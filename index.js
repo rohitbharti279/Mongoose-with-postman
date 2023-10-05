@@ -12,6 +12,12 @@ app.post("/create", async (req,res) => {
     const result = await data.save();
     console.log(result);
     res.send(result);
-})
+});
+
+//list of data
+app.get("/list", async (req, res) => {
+    const data = await product.find();
+    res.send(data);
+});
 
 app.listen(8080);
