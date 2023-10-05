@@ -20,4 +20,14 @@ app.get("/list", async (req, res) => {
     res.send(data);
 });
 
+//delete of data
+app.delete("/delete/:_id", async (req, res) => {
+    // console.log(req.params);
+    // res.send("deleted Successfully");
+
+    const data = await product.deleteOne(req.params);
+    res.send(data);
+    console.log(data);
+});
+
 app.listen(8080);
