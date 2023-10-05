@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 
 //post = Save new data
-app.post("/create", async (req,res) => {
+app.post("/create", async (req, res) => {
     const data = new product(req.body);
     const result = await data.save();
     console.log(result);
@@ -26,6 +26,25 @@ app.delete("/delete/:_id", async (req, res) => {
     // res.send("deleted Successfully");
 
     const data = await product.deleteOne(req.params);
+    res.send(data);
+    console.log(data);
+});
+
+//update of data
+app.put("/update/:_id", async (req, res) => {
+
+    const data = await product.updateOne(
+        //     {name:"Cricket"}, 
+        // {
+        //     $set: {price: 999, category: "World cup 2023"}
+        // }
+
+        //updated by postman
+        req.params,
+        {
+            $set: req.body
+        }
+    );
     res.send(data);
     console.log(data);
 });
